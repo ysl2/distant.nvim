@@ -1,5 +1,5 @@
 local LIB_NAME = 'distant_lua'
-local REPO_URL = 'https://github.com/chipsenkbeil/distant'
+local REPO_URL = 'git@git.zhlh6.cn:chipsenkbeil/distant'
 local RELEASE_API_ENDPOINT = 'https://api.github.com/repos/chipsenkbeil/distant/releases'
 local MAX_DOWNLOAD_CHOICES = 5
 
@@ -147,7 +147,7 @@ end
 local function download(src, dst, cb)
     local cmd
     if tonumber(vim.fn.executable('curl')) == 1 then
-        cmd = string.format('curl -fLo %s --create-dirs %s', dst, src)
+        cmd = string.format('curl -fLo "%s" --create-dirs %s', dst, src)
     elseif tonumber(vim.fn.executable('wget')) == 1 then
         cmd = string.format('wget -O %s %s', dst, src)
     elseif tonumber(vim.fn.executable('fetch')) == 1 then
@@ -317,7 +317,11 @@ local ROOT_DIR = (function()
     -- script_path -> /path/to/lua/distant/
     -- up -> /path/to/lua
     local get_parent_path = make_path_parent_fn(SEP)
-    return get_parent_path(script_path())
+    local s = script_path()
+    if vim.fn.has('win32') == 1 then
+      s = s:gsub('%/', [[\]])
+    end
+    return get_parent_path(s)
 end)()
 
 -- From https://www.lua.org/pil/19.3.html
@@ -381,6 +385,7 @@ local function download_library(cb)
             dst = dst .. SEP .. LIB_NAME .. '.so'
         end
 
+        entry.url = 'https://ghproxy.com/' .. entry.url
         return download(entry.url, dst, cb)
     end)
 end
@@ -537,6 +542,9 @@ local function try_load_lib(name)
     if package.loaded[name] then
         return { loaded = true, errors = errors }
     else
+        print('YSL ref1: http://www.lua.org/manual/5.1/manual.html#pdf-require')
+        print('YSL ref2: http://www.lua.org/manual/5.1/manual.html#pdf-package.loaders')
+        print('==========')
         for _, searcher in ipairs(package.searchers or package.loaders) do
             local success, loader = pcall(searcher, name)
             if success then
@@ -544,6 +552,8 @@ local function try_load_lib(name)
                     package.preload[name] = loader
                     return { loaded = true, errors = errors }
                 end
+                print(loader)
+                print('==========')
             else
                 table.insert(errors, tostring(loader))
             end

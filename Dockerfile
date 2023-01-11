@@ -31,7 +31,7 @@ ARG cargo_bin_dir=/home/$user/.cargo/bin
 RUN mkdir -p $cargo_bin_dir
 
 # Install and configure rust & rls
-# NOTE: Must install to a path like /usr/bin as 
+# NOTE: Must install to a path like /usr/bin as
 #       /usr/local/bin is not on path for ssh
 RUN rustup-init -y \
     && source /home/$user/.cargo/env \
@@ -60,7 +60,7 @@ RUN sudo apk add libc6-compat \
     && sudo ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2
 
 # Install distant binary and make sure its in a path for everyone
-ARG distant_release=https://github.com/chipsenkbeil/distant/releases/download/v0.15.0
+ARG distant_release=https://ghproxy.com/https://github.com/chipsenkbeil/distant/releases/download/v0.15.0
 RUN curl -L $distant_release/distant-linux64-musl > $cargo_bin_dir/distant \
     && chmod +x $cargo_bin_dir/distant \
     && sudo ln -s $cargo_bin_dir/distant /usr/local/bin/distant
