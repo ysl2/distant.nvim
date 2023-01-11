@@ -24,7 +24,7 @@ DOCKER_OUT_ARCHIVE=$(DOCKER_OUT_DIR)/distant_nvim_images.tar
 COMMA:=,
 
 # Function docker_exec runs tests within a docker container
-# 
+#
 # Args:
 #	1: The command to run inside the container such as `make test`
 define docker_exec
@@ -104,7 +104,7 @@ vendor: vendor/plenary.nvim
 
 # Pulls in the latest version of plenary.nvim, which we use to run our tests
 vendor/plenary.nvim:
-	@git clone https://github.com/nvim-lua/plenary.nvim.git vendor/plenary.nvim || \
+	@git clone git@git.zhlh6.cn:nvim-lua/plenary.nvim.git vendor/plenary.nvim || \
 		( cd vendor/plenary.nvim && git pull --rebase; )
 
 clean: ## Cleans out vendor directory

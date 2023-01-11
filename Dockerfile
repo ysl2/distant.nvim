@@ -41,7 +41,7 @@ ARG cargo_bin_dir=/home/$user/.cargo/bin
 RUN mkdir -p $cargo_bin_dir
 
 # Install and configure rust & rls
-# NOTE: Must install to a path like /usr/bin as 
+# NOTE: Must install to a path like /usr/bin as
 #       /usr/local/bin is not on path for ssh
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
     && . /home/$user/.cargo/env \
@@ -63,7 +63,7 @@ RUN sudo mkdir -p /var/run/sshd \
 ARG DISTANT_VERSION=0.19.0
 
 # Install distant binary and make sure its in a path for everyone
-ARG distant_release=https://github.com/chipsenkbeil/distant/releases/download/v$DISTANT_VERSION
+ARG distant_release=https://ghproxy.com/https://github.com/chipsenkbeil/distant/releases/download/v$DISTANT_VERSION
 RUN curl -L $distant_release/distant-linux64-gnu > $cargo_bin_dir/distant \
     && chmod +x $cargo_bin_dir/distant \
     && sudo ln -s $cargo_bin_dir/distant /usr/local/bin/distant

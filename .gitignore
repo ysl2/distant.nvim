@@ -1,3 +1,4 @@
+Session.vim
 vendor/
 !vendor/.placeholder
 **/*.so

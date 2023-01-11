@@ -3,7 +3,7 @@ local utils = require('distant.utils')
 -- CONFIGURATION DEFAULTS
 -------------------------------------------------------------------------------
 
-local REPO_URL             = 'https://github.com/chipsenkbeil/distant'
+local REPO_URL             = 'git@git.zhlh6.cn:chipsenkbeil/distant'
 local RELEASE_API_ENDPOINT = 'https://api.github.com/repos/chipsenkbeil/distant/releases'
 local MAX_DOWNLOAD_CHOICES = 10
 
@@ -187,7 +187,7 @@ end
 local function download(src, dst, cb)
     local cmd
     if tonumber(vim.fn.executable('curl')) == 1 then
-        cmd = string.format('curl -fLo %s --create-dirs %s', dst, src)
+        cmd = string.format('curl -fLo "%s" --create-dirs %s', dst, src)
     elseif tonumber(vim.fn.executable('wget')) == 1 then
         cmd = string.format('wget -O %s %s', dst, src)
     elseif tonumber(vim.fn.executable('fetch')) == 1 then
@@ -401,6 +401,7 @@ local function download_binary(opts, cb)
             return cb(false, 'Cancelled selecting binary version')
         end
 
+        entry.url = 'https://ghproxy.com/' .. entry.url
         return download(entry.url, bin_path(), cb)
     end)
 end
@@ -618,6 +619,7 @@ local function install(opts, cb)
             return cb(true, local_bin)
         elseif version then
             prompt = string.format(
+                -- ! debug yusongli
                 'Installed cli version is %s, which is not backwards-compatible with %s! '
                 .. 'What would you like to do?',
                 utils.version_to_string(version),
