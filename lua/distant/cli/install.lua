@@ -619,7 +619,6 @@ local function install(opts, cb)
             return cb(true, local_bin)
         elseif version then
             prompt = string.format(
-                -- ! debug yusongli
                 'Installed cli version is %s, which is not backwards-compatible with %s! '
                 .. 'What would you like to do?',
                 utils.version_to_string(version),
