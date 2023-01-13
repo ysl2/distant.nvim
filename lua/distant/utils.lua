@@ -320,7 +320,11 @@ end
 --- @return Version|nil
 utils.exec_version = function(bin)
     assert(vim.fn.executable(bin) == 1, tostring(bin) .. ' is not executable')
-    local raw_version = vim.fn.system('"' .. bin .. '"' .. ' --version')
+    local cmd = '"' .. bin .. '"' .. ' --version'
+    if (vim.opt.shell._value == 'pwsh') or (vim.opt.shell._value == 'powershell') then
+        cmd = '&' .. cmd
+    end
+    local raw_version = vim.fn.system(cmd)
     if not raw_version then
         return nil
     end
