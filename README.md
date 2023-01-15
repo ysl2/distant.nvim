@@ -19,7 +19,7 @@ local port = '22' -- The port you use.
 -- If your local matchine username contains whitespace,
 -- you should move your known_hosts file to other path that does not contains whitespace.
 local known_hosts = 'C:\\Public\\known_hosts' -- (Optional) known_hosts file loaction path.
-
+local identity_files = 'C:\\Users\\Public\\id_rsa' -- (Optional) id_rsa file loaction path.
 local cmd = {
   args = {
     ('ssh://%s@%s:%s'):format(user, ip, port)
@@ -28,6 +28,7 @@ local cmd = {
     options = {
       -- ['ssh.backend'] = 'libssh',
       ['ssh.user_known_hosts_files'] = known_hosts,
+      ['ssh.identity_files'] = identity_files
     }
   }
 }
