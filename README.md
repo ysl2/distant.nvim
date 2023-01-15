@@ -6,6 +6,13 @@ Compatible (not fully but can be run as almost normal) with local username conta
 
 ## Configuration
 
+If your ssh-related path contains whitespace, you might want to use mklink to link .ssh folder to another place.
+
+```dos
+cd C:\Users\Public
+mklink /D .ssh "C:\Users\fa fa\.ssh"
+```
+
 Put these code below in your nvim init.lua
 
 ```lua
@@ -17,9 +24,9 @@ local user = 'yourname' -- Remote machine user name.
 local ip = '127.0.0.1' -- Can also be like example.com
 local port = '22' -- The port you use.
 -- If your local matchine username contains whitespace,
--- you should move your known_hosts file to other path that does not contains whitespace.
-local known_hosts = 'C:\\Public\\known_hosts' -- (Optional) known_hosts file loaction path.
-local identity_files = 'C:\\Users\\Public\\id_rsa' -- (Optional) id_rsa file loaction path.
+-- you should move your known_hosts file and id_rsa to other path that does not contains whitespace.
+local known_hosts = 'C:\\Users\\Public\\.ssh\\known_hosts' -- (Optional) known_hosts file loaction path.
+local identity_files = 'C:\\Users\\Public\\.ssh\\id_rsa' -- (Optional) id_rsa file loaction path.
 local cmd = {
   args = {
     ('ssh://%s@%s:%s'):format(user, ip, port)
