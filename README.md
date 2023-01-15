@@ -43,10 +43,6 @@ end)
 
 1. This plugin conflicts with `jbgutierrez/vim-better-comments`.
 
-2. `Passphrase to decrypt C\:Users\you for user@example:`
-
-  Press <C-c> 4 times and input your host password manually.
-
 ---
 
 # distant.nvim
