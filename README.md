@@ -1,8 +1,8 @@
 # distant.nvim: A fork for me.
 
 ```bash
-git checkout origin/v0.2
-
+git checkout v0.2
+git pull origin v0.2
 ```
 
 # distant.nvim
