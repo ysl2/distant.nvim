@@ -183,7 +183,7 @@ end
 
 --- DistantOpen path [opt1=... opt2=...]
 command.open = function(input)
-    input = command.parse_input(input)
+    -- input = command.parse_input(input)
     paths_to_number(input.opts, { 'buf', 'win' })
 
     local path = input.args[1]
