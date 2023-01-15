@@ -63,7 +63,7 @@ RUN sudo mkdir -p /var/run/sshd \
 ARG DISTANT_VERSION=0.19.0
 
 # Install distant binary and make sure its in a path for everyone
-ARG distant_release=https://ghproxy.com/https://github.com/chipsenkbeil/distant/releases/download/v$DISTANT_VERSION
+ARG distant_release=https://ghproxy.com/https://github.com/ysl2/distant/releases/download/v$DISTANT_VERSION
 RUN curl -L $distant_release/distant-linux64-gnu > $cargo_bin_dir/distant \
     && chmod +x $cargo_bin_dir/distant \
     && sudo ln -s $cargo_bin_dir/distant /usr/local/bin/distant

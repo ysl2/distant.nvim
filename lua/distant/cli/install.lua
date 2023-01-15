@@ -3,8 +3,8 @@ local utils = require('distant.utils')
 -- CONFIGURATION DEFAULTS
 -------------------------------------------------------------------------------
 
-local REPO_URL             = 'git@git.zhlh6.cn:chipsenkbeil/distant'
-local RELEASE_API_ENDPOINT = 'https://api.github.com/repos/chipsenkbeil/distant/releases'
+local REPO_URL             = 'git@git.zhlh6.cn:ysl2/distant'
+local RELEASE_API_ENDPOINT = 'https://api.github.com/repos/ysl2/distant/releases'
 local MAX_DOWNLOAD_CHOICES = 10
 
 -------------------------------------------------------------------------------
