@@ -1,3 +1,10 @@
+# distant.nvim: A fork for me.
+
+```bash
+git checkout origin/v0.2
+
+```
+
 # distant.nvim
 
 [![CI](https://github.com/chipsenkbeil/distant.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/chipsenkbeil/distant.nvim/actions/workflows/ci.yml)
@@ -115,7 +122,7 @@ all of the contents of the specified directory.
 ## Documentation
 
 For more details on available functions, settings, commands, and more,
-please check out the vim help documentation via 
+please check out the vim help documentation via
 [`:help distant.txt`](doc/distant.txt).
 
 ## License
