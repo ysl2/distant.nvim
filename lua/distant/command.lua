@@ -216,7 +216,7 @@ end
 
 --- DistantConnect destination [opt1=..., opt2=...]
 command.connect = function(input)
-    input = command.parse_input(input)
+    -- input = command.parse_input(input)
     paths_to_number(input.opts, { 'timeout', 'interval' })
 
     local destination = input.args[1]

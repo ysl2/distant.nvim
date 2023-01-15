@@ -1,3 +1,48 @@
+# distant.nvim: A fork for me.
+
+Tested on windows platform.
+
+Compatible (not fully but can be run as almost normal) with local username contains whitespace like `C:\Users\fa fa\.ssh\known_hosts`
+
+## Configuration
+
+```lua
+-- ===
+-- === Use case for `DistantConnect`
+-- === Put these code below in your nvim init.lua
+-- ===
+
+local user = 'yourname' -- Remote machine user name.
+local ip = '127.0.0.1' -- Can also be like example.com
+local port = '22' -- The port you use.
+-- If your local matchine username contains whitespace,
+-- you should move your known_hosts file to other path that does not contains whitespace.
+local known_hosts = 'C:\\Public\\known_hosts' -- (Optional) known_hosts file loaction path.
+
+local cmd = {
+  args = {
+    ('ssh://%s@%s:%s'):format(user, ip, port)
+  },
+  opts = {
+    options = {
+      -- ['ssh.backend'] = 'libssh',
+      ['ssh.user_known_hosts_files'] = known_hosts,
+    }
+  }
+}
+
+-- Bind <Leader>t to start a new ssh connection to visit remote machine file system.
+vim.keymap.set('n', '<Leader>t', function()
+  require('distant.command').connect(cmd)
+end)
+```
+
+## Notice
+
+This plugin conflict with `jbgutierrez/vim-better-comments`.
+
+---
+
 # distant.nvim
 
 [![CI](https://github.com/chipsenkbeil/distant.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/chipsenkbeil/distant.nvim/actions/workflows/ci.yml)
@@ -113,7 +158,7 @@ all of the contents of the specified directory.
 ## Documentation
 
 For more details on available functions, settings, commands, and more,
-please check out the vim help documentation via 
+please check out the vim help documentation via
 [`:help distant.txt`](doc/distant.txt).
 
 ## License
