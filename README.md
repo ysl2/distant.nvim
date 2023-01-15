@@ -6,10 +6,11 @@ Compatible (not fully but can be run as almost normal) with local username conta
 
 ## Configuration
 
+Put these code below in your nvim init.lua
+
 ```lua
 -- ===
 -- === Use case for `DistantConnect`
--- === Put these code below in your nvim init.lua
 -- ===
 
 local user = 'yourname' -- Remote machine user name.
@@ -39,7 +40,7 @@ end)
 
 ## Notice
 
-This plugin conflict with `jbgutierrez/vim-better-comments`.
+This plugin conflicts with `jbgutierrez/vim-better-comments`.
 
 ---
 
