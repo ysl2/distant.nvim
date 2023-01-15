@@ -41,7 +41,7 @@ end)
 
 ## Notice
 
-1. This plugin conflicts with `jbgutierrez/vim-better-comments`.
+This plugin conflicts with `jbgutierrez/vim-better-comments`.
 
 ---
 
